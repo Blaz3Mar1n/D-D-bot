@@ -13,7 +13,7 @@ games = []
 @client.event
 async def on_message(message) :
     sent = message.content
-    id = client.get_guild(584013936559521827)
+    id = client.get_guild(583740737452113940)
     if message.content.find('ping') != -1 and message.author.name != 'D&D bot':
         await message.channel.send('pong')
     if message.content.find('!d crgame') != -1 and message.author.name != 'D&D bot':

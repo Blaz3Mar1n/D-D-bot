@@ -20,7 +20,6 @@ async def on_message(message) :
         gname = sent[10:]
         games.append([gname,[],''])
         games[-1][1].append(message.author.name)
-        print(games)
         await message.channel.send(gname+' succesfully created')
     if message.content.find('!d end') != -1 and message.author.name != 'D&D bot':
         dgame = sent[7:]
@@ -34,7 +33,7 @@ async def on_message(message) :
         if message.author.name == games[dpos][1][0] :
             if dt == True :
                 games.remove(games[dpos])
-                await message.channel.send(dgame+' succesfully deleted')
+                await message.channel.send(dgame+' ended')
             else :
                 await message.channel.send('There is no game named '+dgame)
         else :
@@ -90,7 +89,7 @@ async def on_message(message) :
             if games[mpos][2] == '' :
                 mr = random.choice(games[mpos][1])
                 games[mpos][2] = mr
-                await message.channel.send(mgame+' game master is @'+mr)
+                await message.channel.send(mgame+' game master is '+mr)
             else :
                 if message.author.name != games[mpos][2] :
                     await message.channel.send('Only current game master can switch the game master role to another random person!')
@@ -150,6 +149,9 @@ async def on_message(message) :
                     else :
                         games[kpos][1].remove(kpe)
                         await message.channel.send(kpe+' kicked from '+kgame)
+    if message.content.find('!d map') != -1 :
+        seed = random.randint(1,1000000000)
+        await message.channel.send('https://azgaar.github.io/Fantasy-Map-Generator/?size=15&seed='+str(seed)+'&coast=0&port=0&river=0&from=MFCG')
     if message.content.find('!d help') != -1 and message.author.name != 'D&D bot':
         await message.channel.send(''' !d crgame <name> -creates a game
 !d join <game> -join a game
@@ -158,6 +160,7 @@ async def on_message(message) :
 !d master <game> -randomly chooses game master
 !d info <game>
 !d games -lists all available games
-!d dice <x> <y> -rolls a dice containing numbers from x to y ''')
+!d dice <x> <y> -rolls a dice containing numbers from x to y 
+!d map -sends a ink to a random generated d&d map  ''')
 
 client.run('NTg0MDEyMzU5OTU4Mzk2OTQz.XPEuzA.sW1DyEl7sKWXnAKtX3GzDr6i10Q')

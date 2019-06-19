@@ -149,7 +149,7 @@ async def on_message(message) :
                     else :
                         games[kpos][1].remove(kpe)
                         await message.channel.send(kpe+' kicked from '+kgame)
-    if message.content.find('!d map') != -1 :
+    if message.content.find('!d map') != -1 and message.author.name != 'D&D bot' :
         seed = random.randint(1,1000000000)
         await message.channel.send('https://azgaar.github.io/Fantasy-Map-Generator/?size=15&seed='+str(seed)+'&coast=0&port=0&river=0&from=MFCG')
     if message.content.find('!d help') != -1 and message.author.name != 'D&D bot':
